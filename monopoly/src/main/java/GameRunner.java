@@ -1,11 +1,10 @@
 import com.sun.javafx.sg.prism.GrowableDataBuffer;
 import javafx.application.*;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
+import javafx.geometry.*;
 import javafx.scene.*;                      //?
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -13,8 +12,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -25,12 +27,18 @@ public class GameRunner extends Application {
     private Image bill = new Image("100$.jpg",30,100,true,false);
     private FlowPane pawn = new FlowPane(Orientation.HORIZONTAL);
     private Label text = new Label();
-    private Label field = new Label();
-    private Label money = new Label();
+    private Text field = new Text();
+    private Text money = new Text();
+    private Text price = new Text();
+    private Text propertyList = new Text();
+    Rectangle r = new Rectangle(250,300);
+    Rectangle b = new Rectangle(270,320);
     GridPane grid = new GridPane();
     FieldDetection fieldDetection = new FieldDetection();
     Move move = new Move();
     int bank = 1500;
+    ArrayList<Properties> playersProperties = new ArrayList<>();
+
 
 
     public static void main(String[] args) {
@@ -39,10 +47,18 @@ public class GameRunner extends Application {
     }
 
     public void buyHotel(){
-        int price = fieldDetection.fieldDetection(field,pawn);
-        bank -= price;
-        money.setText(bank + "$");
 
+        if (playersProperties.contains(fieldDetection.field(pawn))){
+            price.setText("It's already\nyours!");
+
+        }
+        else {
+
+            int value = fieldDetection.field(pawn).getValue();
+            bank -= value;
+            money.setText("Bank: " + bank + "$");
+            playersProperties.add(fieldDetection.field(pawn));
+        }
 
     }
 
@@ -85,24 +101,34 @@ public class GameRunner extends Application {
 
         Button button1 = new Button();
         button1.setText("Move");
-        button1.setOnAction((e) ->{move.move(text,field,pawn);
+        button1.setOnAction((e) ->{move.move(text,field,price,money,propertyList,pawn,bank,playersProperties);
         });
 
         Button button2 = new Button();
         button2.setText("Buy");
         button2.setOnAction(event -> buyHotel());
 
+        r.setFill(Color.AZURE);
+        b.setFill(Color.BLUE);
 
 
-
-        /*text.setTextFill(Color.BLACK);
-        text.setFont(new Font("Arial",18));*/
 
         text.setTextFill(Color.RED);
-
-        money.setTextFill(Color.RED);
-        //money.setText(bank + "$");
+        text.setFont(new Font(22));
         money.setFont(new Font("Arial",18));
+        field.setFont(new Font("Arial",28));
+        price.setUnderline(true);
+        price.setFont(new Font(28));
+        r.setTranslateX(52);
+        r.setTranslateY(20);
+        b.setTranslateX(42);
+        b.setTranslateY(20);
+        money.setTranslateX(55);
+        money.setTranslateY(-29);
+        propertyList.setFont(new Font("Arial",18));
+        propertyList.setTranslateX(55);
+        propertyList.setTranslateY(-5);
+
 
 
 
@@ -110,19 +136,28 @@ public class GameRunner extends Application {
         pawn.getChildren().add(img);
 
 
-        /*GridPane.setRowIndex(pawn,0);
-        GridPane.setColumnIndex(pawn,0);*/
 
         grid.add(pawn, 0,0);
-        grid.add(button1,5,1);
-        grid.add(button2,6,1);
-        grid.add(text,5,2);
-        grid.add(field,5,3);
-        grid.add(money,1,1);
+        grid.add(button1,4,8);
+        grid.add(button2,5,8);
+        grid.add(text,4,9);
+        grid.add(field,2,2);
+        grid.add(price,4,2);
+        grid.add(b,6,7);
+        grid.add(r,6,7);
+        grid.add(money,6,6);
+        grid.add(propertyList,6,6);
+
+
+
+
+
+
 
 
         pawn.setAlignment(Pos.CENTER);
-        //text.setAlignment(Pos.BASELINE_RIGHT);          //nie dziala
+
+
 
 
         Scene scene = new Scene(grid, 1000, 1000, Color.AZURE);

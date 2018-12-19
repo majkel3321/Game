@@ -3,14 +3,23 @@ import java.util.Map;
 
 public class Properties {
 
-    HashMap<String,Integer> properties = new HashMap<>();
+    String name;
+    int value;
 
-    public Properties(){
-        properties.put("Parking",1);
-        properties.put("Kentucky\nAvenue",220);
+    public Properties(String name, int value){
+        this.name = name;
+        this.value = value;
     }
 
-    public HashMap<String,Integer> getMap(){
-        return properties;
+    public String getName(){
+        return name;
+    }
+
+    public int getValue(){
+        return value;
+    }
+
+    public String toString(){
+        return name;
     }
 }
