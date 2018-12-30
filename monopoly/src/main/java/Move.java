@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Move {
 
-    public void move(Label text, Text field, Text price, Text money, Text propertyList, FlowPane pawn, int bank, ArrayList<Properties> list){
+    public void move(Label text, Text field, Text price, Text money, Label propertyList, FlowPane pawn, int bank, ArrayList<Properties> list){
 
         Random generator = new Random();
         FieldDetection fieldDetection = new FieldDetection();
@@ -17,7 +17,7 @@ public class Move {
 
 
 
-       // for (int i = 1; i <= los; i++){
+        for (int i = 1; i <= los; i++){
 
             if (GridPane.getColumnIndex(pawn) < 10 && GridPane.getRowIndex(pawn) == 0 ) {
                 GridPane.setColumnIndex(pawn, GridPane.getColumnIndex(pawn) + 1);
@@ -34,10 +34,8 @@ public class Move {
             }
 
 
-       // }
+        }
 
-
-        //fieldDetection.field(pawn,field);
 
         field.setText(fieldDetection.field(pawn).getName());
         price.setText("Price: " + fieldDetection.field(pawn).getValue() + "$");

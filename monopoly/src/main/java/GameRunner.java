@@ -30,10 +30,12 @@ public class GameRunner extends Application {
     private Text field = new Text();
     private Text money = new Text();
     private Text price = new Text();
-    private Text propertyList = new Text();
+    private Label propertyList = new Label();
     Rectangle r = new Rectangle(250,300);
     Rectangle b = new Rectangle(270,320);
     GridPane grid = new GridPane();
+    FlowPane flowPane = new FlowPane();
+    BorderPane borderPane = new BorderPane();
     FieldDetection fieldDetection = new FieldDetection();
     Move move = new Move();
     int bank = 1500;
@@ -58,6 +60,8 @@ public class GameRunner extends Application {
             bank -= value;
             money.setText("Bank: " + bank + "$");
             playersProperties.add(fieldDetection.field(pawn));
+            propertyList.setText("My properties:" + playersProperties);
+
         }
 
     }
@@ -96,7 +100,7 @@ public class GameRunner extends Application {
 
 
 
-
+        money.setText(bank + "$");
 
 
         Button button1 = new Button();
@@ -128,6 +132,15 @@ public class GameRunner extends Application {
         propertyList.setFont(new Font("Arial",18));
         propertyList.setTranslateX(55);
         propertyList.setTranslateY(-5);
+        pawn.setAlignment(Pos.CENTER);
+        //button1.setTranslateX(100);
+        //text.setTranslateX(100);
+        propertyList.setWrapText(true);
+        propertyList.setMaxHeight(300);
+        propertyList.setMinHeight(300);
+        propertyList.setMinWidth(250);
+
+
 
 
 
@@ -146,16 +159,11 @@ public class GameRunner extends Application {
         grid.add(b,6,7);
         grid.add(r,6,7);
         grid.add(money,6,6);
-        grid.add(propertyList,6,6);
+        grid.add(propertyList,6,7);
+        //flowPane.setStyle("-fx-background-color: red");
+        //flowPane.getChildren().add(propertyList);
+        //grid.add(flowPane,6,7,3,3);
 
-
-
-
-
-
-
-
-        pawn.setAlignment(Pos.CENTER);
 
 
 
@@ -165,57 +173,6 @@ public class GameRunner extends Application {
         primaryStage.setTitle("Monopoly");
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*Group root = new Group();
-        Scene scene = new Scene(root,1600,900, Color.BLACK);
-
-        Rectangle r = new Rectangle(50,50,1500,800);
-        //Rectangle s = new Rectangle(0,0,250,250);
-        //Ellipse e = new Ellipse(800,450,500,100);
-
-       // s.setFill(Color.RED);
-        r.setFill(Color.RED);
-       // e.setFill(Color.BLUE);
-        root.getChildren().add(r);
-       // root.getChildren().add(s);
-        //root.getChildren().add(e);
-
-
-        primaryStage.setTitle("Scene");
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
-
-
 
     }
 }
