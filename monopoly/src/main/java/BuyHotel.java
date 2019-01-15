@@ -8,36 +8,45 @@ import java.util.HashMap;
 
 public class BuyHotel {
 
-    int bank = 1500;
-    FieldDetection fieldDetection = new FieldDetection();
+
+    public void buyHotel(ArrayList<Properties> playersProperties, Label propertyList, Text price, Text money,
+                         ArrayList<Properties> opponentProperties, Properties properties, Bank myBank){
 
 
-
-    public void buyHotel(ArrayList<Properties> playersProperties, Label propertyList, Text price, FlowPane pawn, Text money){
-
-        int key = fieldDetection.field(pawn).value;
-
-
-        if(key == 0){
+        if (properties.getValue() == 0){
             price.setText("You can't buy it!");
         }
+        else{
 
-        else {
-
-            if (playersProperties.contains(fieldDetection.field(pawn))) {
+            if(playersProperties.contains(properties)){
                 price.setText("It's already\nyours!");
-
-            } else {
-
-                int value = fieldDetection.field(pawn).getValue();
-                bank -= value;
-                money.setText("Bank: " + bank + "$");
-                playersProperties.add(fieldDetection.field(pawn));
-                propertyList.setText("My properties:" + playersProperties);
-
             }
 
+            else{
+
+                if (opponentProperties.contains(properties)){
+                    price.setText("Opponent have it!");
+                }
+
+                else{
+
+                    if(myBank.getAmount()- properties.getValue() < 0){
+                        price.setText("You don't have\nenough money!");
+                    }
+
+                    else{
+
+                        playersProperties.add(properties);
+                        myBank.amount -= properties.getValue();
+                        propertyList.setText("My properties:\n" + playersProperties);
+                        money.setText("Bank: " + myBank.getAmount() + "$");
+                    }
+
+                }
+            }
         }
 
+
     }
+
 }

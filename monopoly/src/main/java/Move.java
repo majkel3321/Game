@@ -5,22 +5,26 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class Move {
 
-    OponentBuy oponentBuy = new OponentBuy();
+    //OpponentBuy opponentBuy = new OpponentBuy();
+    FieldDetection fieldDetection = new FieldDetection();
+    SpecialField specialField = new SpecialField();
+    Random generator = new Random();
 
-    public void move(Label text, Text field, Text price, FlowPane pawn, Text turn, FlowPane pawn2){
 
-        Random generator = new Random();
-        FieldDetection fieldDetection = new FieldDetection();
+
+
+
+    public void move(Label text, Text field, Text price,FlowPane pawn,ArrayList opponentProperties, Bank myBank, Bank opponentsBank, Text money, Properties properties, Text opponentsMoney){
+
         int los = generator.nextInt(6) + 1;
         text.setText("Los : " + los);
 
 
 
-        //for (int i = 1; i <= los; i++){
+       // for (int i = 1; i <= los; i++){
 
             if (GridPane.getColumnIndex(pawn) < 10 && GridPane.getRowIndex(pawn) == 0 ) {
                 GridPane.setColumnIndex(pawn, GridPane.getColumnIndex(pawn) + 1);
@@ -37,16 +41,20 @@ public class Move {
             }
 
 
-       //}
+     // }
 
 
         field.setText(fieldDetection.field(pawn).getName());
         price.setText("Price: " + fieldDetection.field(pawn).getValue() + "$");
-        turn.setText("Opponent turn!");
+
+        if (opponentProperties.contains(properties)){
+            specialField.specialEvent(opponentProperties, myBank, opponentsBank,money,opponentsMoney,properties);
+
+        }
 
 
 
-        opponentMove(pawn2,text,turn);
+
 
         /*try
         {
@@ -62,15 +70,12 @@ public class Move {
 
 
 
-        public void opponentMove(FlowPane pawn2, Label text, Text turn ){
+        public void opponentMove(FlowPane pawn2, ArrayList myProperties, Properties properties, Bank opponentsBank, Bank myBank, Text opponentsMoney, Text money ){
 
-
-            Random generator = new Random();
-            FieldDetection fieldDetection = new FieldDetection();
             int los = generator.nextInt(6) + 1;
-            text.setText("Los : " + los);
 
-            for (int i = 1; i <= los; i++) {
+
+           // for (int i = 1; i <= los; i++) {
 
                 if (GridPane.getColumnIndex(pawn2) < 10 && GridPane.getRowIndex(pawn2) == 0) {
                     GridPane.setColumnIndex(pawn2, GridPane.getColumnIndex(pawn2) + 1);
@@ -81,12 +86,11 @@ public class Move {
                 } else if (GridPane.getColumnIndex(pawn2) == 0 && GridPane.getRowIndex(pawn2) <= 10) {
                     GridPane.setRowIndex(pawn2, GridPane.getRowIndex(pawn2) - 1);
                 }
+           // }
+
+            if (myProperties.contains(properties)){
+                specialField.specialEvent(myProperties, opponentsBank, myBank, opponentsMoney, money, properties);
             }
-
-            oponentBuy.buy(pawn2);
-            turn.setText("Your turn!");
-
-
 
 
 
