@@ -29,6 +29,7 @@ public class GameRunner extends Application {
     private Text price = new Text();
     private Label propertyList = new Label();
     private Label opponentsLabel = new Label();
+    private Label parkingLabel = new Label();
     Rectangle r = new Rectangle(330,360);
     Rectangle b = new Rectangle(350,380);
     Rectangle r2 = new Rectangle(330,360);
@@ -40,9 +41,9 @@ public class GameRunner extends Application {
     OpponentBuy opponentBuy = new OpponentBuy();
     Bank myBank = new Bank(1500);
     Bank opponentsBank = new Bank(1500);
+    Bank parking = new Bank(0);
     ArrayList<Properties> playersProperties = new ArrayList<>();
     ArrayList<Properties> opponentProperties = new ArrayList<>();
-    int bank = 1500;
 
 
 
@@ -55,8 +56,8 @@ public class GameRunner extends Application {
     public void action(){
 
 
-        move.move(text,field,price,pawn,opponentProperties,myBank,opponentsBank,money,fieldDetection.field(pawn),opponentMoney);
-        move.opponentMove(pawn2,playersProperties,fieldDetection.field(pawn2),opponentsBank,myBank,opponentMoney,money);
+        move.move(text,field,price,pawn,opponentProperties,myBank,opponentsBank,money,fieldDetection.field(pawn),opponentMoney,parking,parkingLabel);
+        move.opponentMove(pawn2,playersProperties,fieldDetection.field(pawn2),opponentsBank,myBank,opponentMoney,money,price,parking,parkingLabel);
         opponentBuy.buy(opponentsLabel,playersProperties,opponentProperties,opponentMoney,fieldDetection.field(pawn2),opponentsBank);
 
     }
@@ -96,7 +97,7 @@ public class GameRunner extends Application {
 
 
         //money.setText("Bank: " + bank + "$");
-        opponentMoney.setText("Bank: " + bank + "$");
+        opponentMoney.setText("Bank: 1500$");
         propertyList.setText("My properties:");
         opponentsLabel.setText("Opponents properties:");
 
@@ -111,9 +112,6 @@ public class GameRunner extends Application {
         button2.setOnAction(event -> buyHotel.buyHotel(playersProperties,propertyList,price,money,opponentProperties,
                 fieldDetection.field(pawn),myBank));
 
-        Button button3 = new Button();
-        button3.setText("TEST");
-        button3.setOnAction(event -> {price.setText("TEST");});
 
         r.setFill(Color.AZURE);
         b.setFill(Color.BLUE);
@@ -140,6 +138,7 @@ public class GameRunner extends Application {
         b2.setTranslateY(20);
         money.setTranslateX(75);
         money.setTranslateY(-60);
+        money.setText("Bank : 1500$");
         opponentMoney.setTranslateX(75);
         opponentMoney.setTranslateY(-60);
         propertyList.setFont(new Font("Arial",18));
@@ -162,9 +161,11 @@ public class GameRunner extends Application {
         opponentsLabel.setMinHeight(360);
         opponentsLabel.setMinWidth(330);
         opponentsLabel.setMaxWidth(330);
-
-
-
+        parkingLabel.setText("0$");
+        parkingLabel.setFont(new Font(26));
+        parkingLabel.setTextFill(Color.BLUE);
+        parkingLabel.setTranslateX(10);
+        parkingLabel.setTranslateY(50);
 
 
 
@@ -178,10 +179,9 @@ public class GameRunner extends Application {
 
 
         grid.add(pawn, 10,10);
-        grid.add(pawn2, 10,9);
+        grid.add(pawn2, 10,10);
         grid.add(button1,4,8);
         grid.add(button2,5,8);
-        grid.add(button3,6,8);
         grid.add(text,4,9);
         grid.add(field,4,1);
         grid.add(price,4,2);
@@ -193,11 +193,7 @@ public class GameRunner extends Application {
         grid.add(opponentMoney,12,1);
         grid.add(propertyList,12,8);
         grid.add(opponentsLabel,12,3);
-
-        //flowPane.setStyle("-fx-background-color: red");
-        //flowPane.getChildren().add(propertyList);
-        //grid.add(flowPane,6,7,3,3);
-
+        grid.add(parkingLabel,0,0);
 
 
 
