@@ -56,8 +56,8 @@ public class GameRunner extends Application {
     public void action(){
 
 
-        move.move(text,field,price,pawn,opponentProperties,myBank,opponentsBank,money,fieldDetection.field(pawn),opponentMoney,parking,parkingLabel);
-        move.opponentMove(pawn2,playersProperties,fieldDetection.field(pawn2),opponentsBank,myBank,opponentMoney,money,price,parking,parkingLabel);
+        move.move(text,field,price,pawn,opponentProperties,myBank,opponentsBank,money,fieldDetection.field(pawn),opponentMoney,parking,parkingLabel,playersProperties);
+        move.opponentMove(pawn2,playersProperties,fieldDetection.field(pawn2),opponentsBank,myBank,opponentMoney,money,price,parking,parkingLabel,opponentProperties);
         opponentBuy.buy(opponentsLabel,playersProperties,opponentProperties,opponentMoney,fieldDetection.field(pawn2),opponentsBank);
 
     }
@@ -179,7 +179,7 @@ public class GameRunner extends Application {
 
 
         grid.add(pawn, 10,10);
-        grid.add(pawn2, 10,10);
+        grid.add(pawn2, 10,8);
         grid.add(button1,4,8);
         grid.add(button2,5,8);
         grid.add(text,4,9);
