@@ -30,6 +30,7 @@ public class GameRunner extends Application {
     private Label propertyList = new Label();
     private Label opponentsLabel = new Label();
     private Label parkingLabel = new Label();
+    private Text dummy = new Text();
     Rectangle r = new Rectangle(330,360);
     Rectangle b = new Rectangle(350,380);
     Rectangle r2 = new Rectangle(330,360);
@@ -53,12 +54,19 @@ public class GameRunner extends Application {
         launch(args);
     }
 
-    public void action(){
+    private void action(){
 
 
         move.move(text,field,price,pawn,opponentProperties,myBank,opponentsBank,money,fieldDetection.field(pawn),opponentMoney,parking,parkingLabel,playersProperties);
         move.opponentMove(pawn2,playersProperties,fieldDetection.field(pawn2),opponentsBank,myBank,opponentMoney,money,price,parking,parkingLabel,opponentProperties);
         opponentBuy.buy(opponentsLabel,playersProperties,opponentProperties,opponentMoney,fieldDetection.field(pawn2),opponentsBank);
+        buyHotel.build(grid,pawn2,fieldDetection.field(pawn2),opponentProperties,dummy,opponentsBank,opponentMoney,Color.WHITE);
+        buyHotel.build(grid,pawn2,fieldDetection.field(pawn2),opponentProperties,dummy,opponentsBank,opponentMoney,Color.WHITE);
+        buyHotel.build(grid,pawn2,fieldDetection.field(pawn2),opponentProperties,dummy,opponentsBank,opponentMoney,Color.WHITE);
+        buyHotel.build(grid,pawn2,fieldDetection.field(pawn2),opponentProperties,dummy,opponentsBank,opponentMoney,Color.WHITE);
+
+
+
 
     }
 
@@ -95,8 +103,6 @@ public class GameRunner extends Application {
         grid.getRowConstraints().add(new RowConstraints(130));
 
 
-
-        //money.setText("Bank: " + bank + "$");
         opponentMoney.setText("Bank: 1500$");
         propertyList.setText("My properties:");
         opponentsLabel.setText("Opponents properties:");
@@ -111,6 +117,10 @@ public class GameRunner extends Application {
         button2.setText("Buy");
         button2.setOnAction(event -> buyHotel.buyHotel(playersProperties,propertyList,price,money,opponentProperties,
                 fieldDetection.field(pawn),myBank));
+
+        Button button3 = new Button();
+        button3.setText("Build");
+        button3.setOnAction(event -> buyHotel.build(grid,pawn,fieldDetection.field(pawn),playersProperties,price,myBank,money,Color.BLACK));
 
 
         r.setFill(Color.AZURE);
@@ -178,10 +188,11 @@ public class GameRunner extends Application {
 
 
 
-        grid.add(pawn, 10,10);
-        grid.add(pawn2, 10,8);
+        grid.add(pawn, 10,1);
+        grid.add(pawn2, 10,5);
         grid.add(button1,4,8);
         grid.add(button2,5,8);
+        grid.add(button3,6,8);
         grid.add(text,4,9);
         grid.add(field,4,1);
         grid.add(price,4,2);
@@ -198,11 +209,16 @@ public class GameRunner extends Application {
 
 
 
+
+
         Scene scene = new Scene(grid, 1500, 1000, Color.AZURE);
 
         primaryStage.setTitle("Monopoly");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
+        //domki, koniec gry
 
     }
 }

@@ -13,9 +13,31 @@ public class OpponentBuy {
         Random randomGenerator = new Random();
         int random = randomGenerator.nextInt(10)+1;
 
+        if (properties.getValue() != 0){
+
+            if (!opponentProperties.contains(properties)){
+
+                if (!playerProperties.contains(properties)){
+
+                    if (opponentsBank.getAmount() - properties.getValue() > 0){
+
+                        //if (random < 5){
+                            opponentProperties.add(properties);
+                            opponentsBank.removeAmount(properties.getValue());
+                            opponentLabel.setText("Opponent properties:\n" + opponentProperties);
+                            opponentMoney.setText("Bank: " + opponentsBank.getAmount() + "$");
+                       // }
+                    }
+                }
+            }
+        }
 
 
-        if (properties.getValue() == 0){
+
+
+
+
+      /*  if (properties.getValue() == 0){
             //opponentLabel.setText("value = 0");
         }
 
@@ -38,15 +60,18 @@ public class OpponentBuy {
                     }
 
                     else{
-                        opponentProperties.add(properties);
-                        opponentsBank.amount -= properties.getValue();
-                        opponentLabel.setText("Opponent properties:\n" + opponentProperties);
-                        opponentMoney.setText("Bank: " + opponentsBank.getAmount() + "$");
+
+                        if(random < 5) {
+                            opponentProperties.add(properties);
+                            opponentsBank.removeAmount(properties.getValue());
+                            opponentLabel.setText("Opponent properties:\n" + opponentProperties);
+                            opponentMoney.setText("Bank: " + opponentsBank.getAmount() + "$");
+                        }
 
                     }
                 }
             }
-        }
+        }*/
 
 
 
