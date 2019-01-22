@@ -128,8 +128,6 @@ public class GameRunner extends Application {
 
         grid.setAlignment(Pos.TOP_LEFT);
         grid.setBackground(background);
-        //grid.setGridLinesVisible(true);
-
 
         grid.getColumnConstraints().add(new ColumnConstraints(130));
         for(int i = 1; i <=9; i++){
@@ -147,9 +145,7 @@ public class GameRunner extends Application {
         grid.getRowConstraints().add(new RowConstraints(130));
 
 
-        opponentMoney.setText("Bank: 1500$");
-        propertyList.setText("My properties:");
-        opponentsLabel.setText("Opponents properties:");
+
 
 
 
@@ -167,54 +163,69 @@ public class GameRunner extends Application {
         button3.setOnAction(event -> buyHotel.build(grid,pawn,fieldDetection.field(pawn),playersProperties,price,myBank,money,Color.BLACK));
 
 
-        r.setFill(Color.AZURE);
-        b.setFill(Color.BLUE);
-        r2.setFill(Color.AZURE);
-        b2.setFill(Color.RED);
-
-
 
 
         text.setTextFill(Color.RED);
         text.setFont(new Font(22));
-        money.setFont(new Font("Arial",18));
-        opponentMoney.setFont(new Font("Arial",18));
+
         field.setFont(new Font("Arial",28));
         price.setUnderline(true);
         price.setFont(new Font(28));
+
+        r.setFill(Color.AZURE);
         r.setTranslateX(72);
         r.setTranslateY(20);
+
+        b.setFill(Color.BLUE);
         b.setTranslateX(62);
         b.setTranslateY(20);
+
+        r2.setFill(Color.AZURE);
         r2.setTranslateX(72);
         r2.setTranslateY(20);
+
+        b2.setFill(Color.RED);
         b2.setTranslateX(62);
         b2.setTranslateY(20);
+
+        money.setFont(new Font("Arial",18));
         money.setTranslateX(75);
         money.setTranslateY(-60);
         money.setText("Bank : 1500$");
+
+        opponentMoney.setFont(new Font("Arial",18));
+        opponentMoney.setText("Bank: 1500$");
         opponentMoney.setTranslateX(75);
         opponentMoney.setTranslateY(-60);
+
+        propertyList.setText("My properties:");
         propertyList.setFont(new Font("Arial",18));
         propertyList.setTranslateX(75);
         propertyList.setTranslateY(-5);
+
         opponentsLabel.setFont(new Font("Arial",18));
         opponentsLabel.setTranslateX(75);
         opponentsLabel.setTranslateY(-55);
+
         pawn.setAlignment(Pos.CENTER);
         pawn.setTranslateY(15);
+
         pawn2.setAlignment(Pos.CENTER);
         pawn2.setTranslateY(25);
+
         propertyList.setWrapText(true);
         propertyList.setMaxHeight(360);
         propertyList.setMinHeight(360);
         propertyList.setMinWidth(330);
         propertyList.setMaxWidth(330);
+
+        opponentsLabel.setText("Opponents properties:");
         opponentsLabel.setWrapText(true);
         opponentsLabel.setMaxHeight(360);
         opponentsLabel.setMinHeight(360);
         opponentsLabel.setMinWidth(330);
         opponentsLabel.setMaxWidth(330);
+
         parkingLabel.setText("0$");
         parkingLabel.setFont(new Font(26));
         parkingLabel.setTextFill(Color.BLUE);
@@ -264,7 +275,7 @@ public class GameRunner extends Application {
 
 
 
-        //domki, koniec gry
+
 
     }
 }
