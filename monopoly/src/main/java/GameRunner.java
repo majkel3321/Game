@@ -242,8 +242,8 @@ public class GameRunner extends Application {
 
 
 
-        grid.add(pawn, 10,1);
-        grid.add(pawn2, 10,5);
+        grid.add(pawn, 10,10);
+        grid.add(pawn2, 10,10);
         grid.add(button1,4,8);
         grid.add(button2,5,8);
         grid.add(button3,6,8);
