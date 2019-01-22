@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.*;
 import java.util.ArrayList;
 
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 public class GameRunner extends Application {
 
     private Image image = new Image("monopoly.jpg");
-    private Image bill = new Image("100$.jpg",55,100,true,false);
-    private Image opponentBill = new Image("Red dollar.jpg",55,100,true,false);
+    private Image bill = new Image("100$.jpg",75,100,true,false);
+    private Image opponentBill = new Image("Red dollar.jpg",75,100,true,false);
     private FlowPane pawn = new FlowPane(Orientation.HORIZONTAL);
     private FlowPane pawn2 = new FlowPane(Orientation.HORIZONTAL);
     private Label text = new Label();
@@ -54,7 +55,7 @@ public class GameRunner extends Application {
         launch(args);
     }
 
-    private void action(){
+    private void action(Stage primaryStage){
 
 
         move.move(text,field,price,pawn,opponentProperties,myBank,opponentsBank,money,fieldDetection.field(pawn),opponentMoney,parking,parkingLabel,playersProperties);
@@ -65,11 +66,54 @@ public class GameRunner extends Application {
         buyHotel.build(grid,pawn2,fieldDetection.field(pawn2),opponentProperties,dummy,opponentsBank,opponentMoney,Color.WHITE);
         buyHotel.build(grid,pawn2,fieldDetection.field(pawn2),opponentProperties,dummy,opponentsBank,opponentMoney,Color.WHITE);
 
+        if (myBank.getAmount() <= -1500 || opponentsBank.getAmount() <= -1500){
+            endGame(primaryStage,myBank,opponentsBank);
+
+        }
+
 
 
 
     }
 
+
+    private void endGame(Stage primaryStage, Bank myBank, Bank opponentsBank ){
+
+        Group root = new Group();
+        Scene endScene = new Scene(root,1500,1000);
+        Text end = new Text();
+
+        if (myBank.getAmount() > opponentsBank.getAmount()){
+            end.setText("You won!");
+            endScene.setFill(Color.YELLOW);
+        }
+        else{
+            end.setText("You lost!");
+            endScene.setFill(Color.BLACK);
+        }
+
+        dummy.setText("Your account balance: " + myBank.getAmount() + "\n" +
+                "Computer's account balance: " + opponentsBank.getAmount());
+
+
+        end.setFont(new Font(200));
+        end.setX(350);
+        end.setY(500);
+        end.setFill(Color.RED);
+
+        dummy.setFont(new Font(60));
+        dummy.setX(350);
+        dummy.setY(600);
+        dummy.setFill(Color.RED);
+
+        root.getChildren().add(end);
+        root.getChildren().add(dummy);
+
+        primaryStage.setScene(endScene);
+        primaryStage.show();
+
+
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -111,7 +155,7 @@ public class GameRunner extends Application {
 
         Button button1 = new Button();
         button1.setText("Move");
-        button1.setOnAction(event -> action());
+        button1.setOnAction(event -> action(primaryStage));
 
         Button button2 = new Button();
         button2.setText("Buy");
@@ -158,9 +202,9 @@ public class GameRunner extends Application {
         opponentsLabel.setTranslateX(75);
         opponentsLabel.setTranslateY(-55);
         pawn.setAlignment(Pos.CENTER);
-        pawn.setTranslateY(-5);
+        pawn.setTranslateY(15);
         pawn2.setAlignment(Pos.CENTER);
-        pawn2.setTranslateY(15);
+        pawn2.setTranslateY(25);
         propertyList.setWrapText(true);
         propertyList.setMaxHeight(360);
         propertyList.setMinHeight(360);
@@ -211,11 +255,13 @@ public class GameRunner extends Application {
 
 
 
-        Scene scene = new Scene(grid, 1500, 1000, Color.AZURE);
+        Scene scene = new Scene(grid, 1500, 1000, Color.rgb(206,230,208));
 
         primaryStage.setTitle("Monopoly");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
 
 
         //domki, koniec gry

@@ -30,6 +30,7 @@ public class Move {
         if (opponentProperties.contains(properties) || fieldDetection.field(pawn).getValue() == 0) {
             specialField.specialEvent(pawn, opponentProperties, myBank, opponentsBank, money, opponentsMoney, properties, price, parking, parkingLabel,myproperties);
 
+
         }
 
 

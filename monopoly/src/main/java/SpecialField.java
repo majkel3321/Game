@@ -31,10 +31,10 @@ public class SpecialField {
                 money.setText("Bank: " + myBank.getAmount() + "$");
             }
 
-           /*else if ("GO TO JAIL".equals(fieldName)){
+            else if ("GO TO JAIL".equals(fieldName)){
                 GridPane.setColumnIndex(pawn,0);
                 GridPane.setRowIndex(pawn,10);
-            }*/
+            }
 
             else if("Income Tax".equals(fieldName)){
                 myBank.removeAmount(200);

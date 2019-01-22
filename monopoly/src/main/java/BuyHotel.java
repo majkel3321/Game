@@ -94,46 +94,49 @@ public class BuyHotel {
         label.setFont(new Font("Arial",22));
         label.setTextFill(Color.RED);
 
-        if (myProperties.contains(properties)) {
-
-            if (myBank.getAmount() - properties.getHotel() < 0 ){
-                price.setText("You don't have\nenough money to\nbuild a house!");
-            }
-
-            else {
-
-
-                if (properties.getLevel() == 0) {
-                    grid.add(rectangle, x, y);
-                    properties.addLevel();
-                    myBank.removeAmount(properties.getHotel());
-                    money.setText("Bank: " + myBank.getAmount() + "$");
-
-                } else if (properties.getLevel() == 1) {
-                    grid.add(rectangle, x, y);
-                    rectangle.setTranslateX(28.6);
-                    properties.addLevel();
-                    myBank.removeAmount(properties.getHotel());
-                    money.setText("Bank: " + myBank.getAmount() + "$");
-
-                } else if (properties.getLevel() == 2) {
-                    grid.add(rectangle, x, y);
-                    rectangle.setTranslateX(55.2);
-                    properties.addLevel();
-                    myBank.removeAmount(properties.getHotel());
-                    money.setText("Bank: " + myBank.getAmount() + "$");
-
-                } else setLabel(grid, properties, myBank, money, x, y, label);
-            }
-
-
+        if(properties.getRent() == 0){
+            price.setText("You can't build\na hotel here!");
         }
-
-        else{
-
-            price.setText("To build a hotel\nyou must buy it first!");
+        else {
 
 
+            if (myProperties.contains(properties)) {
+
+                if (myBank.getAmount() - properties.getHotel() < 0) {
+                    price.setText("You don't have\nenough money to\nbuild a house!");
+                } else {
+
+
+                    if (properties.getLevel() == 0) {
+                        grid.add(rectangle, x, y);
+                        properties.addLevel();
+                        myBank.removeAmount(properties.getHotel());
+                        money.setText("Bank: " + myBank.getAmount() + "$");
+
+                    } else if (properties.getLevel() == 1) {
+                        grid.add(rectangle, x, y);
+                        rectangle.setTranslateX(28.6);
+                        properties.addLevel();
+                        myBank.removeAmount(properties.getHotel());
+                        money.setText("Bank: " + myBank.getAmount() + "$");
+
+                    } else if (properties.getLevel() == 2) {
+                        grid.add(rectangle, x, y);
+                        rectangle.setTranslateX(55.2);
+                        properties.addLevel();
+                        myBank.removeAmount(properties.getHotel());
+                        money.setText("Bank: " + myBank.getAmount() + "$");
+
+                    } else setLabel(grid, properties, myBank, money, x, y, label);
+                }
+
+
+            } else {
+
+                price.setText("To build a hotel\nyou must buy it first!");
+
+
+            }
         }
 
 
@@ -175,48 +178,50 @@ public class BuyHotel {
 
     private void buildHotelY(GridPane grid, Properties properties, ArrayList<Properties> myProperties, Text price, Bank myBank, Text money, int x, int y, Rectangle rectangle, Label label) {
 
-        if (myProperties.contains(properties)) {
-
-            if (myBank.getAmount() - properties.getHotel() < 0 ){
-                price.setText("You don't have\nenough money to\nbuild a house!");
-            }
-
-            else {
-
-
-                if (properties.getLevel() == 0) {
-                    grid.add(rectangle, x, y);
-                    properties.addLevel();
-                    myBank.removeAmount(properties.getHotel());
-                    money.setText("Bank: " + myBank.getAmount() + "$");
-                }
-                else if (properties.getLevel() == 1) {
-                    grid.add(rectangle, x, y);
-                    rectangle.setTranslateY(0);
-                    properties.addLevel();
-                    myBank.removeAmount(properties.getHotel());
-                    money.setText("Bank: " + myBank.getAmount() + "$");
-
-                } else if (properties.getLevel() == 2) {
-                    grid.add(rectangle, x, y);
-                    rectangle.setTranslateY(28);
-                    properties.addLevel();
-                    myBank.removeAmount(properties.getHotel());
-                    money.setText("Bank: " + myBank.getAmount() + "$");
-
-                } else {
-                    setLabel(grid, properties, myBank, money, x, y, label);
-                }
-            }
-
-
+        if(properties.getRent() == 0){
+            price.setText("You can't build\na hotel here!");
         }
-
-        else{
-
-            price.setText("To build a hotel\nyou must buy it first!");
+        else {
 
 
+            if (myProperties.contains(properties)) {
+
+                if (myBank.getAmount() - properties.getHotel() < 0) {
+                    price.setText("You don't have\nenough money to\nbuild a house!");
+                } else {
+
+
+                    if (properties.getLevel() == 0) {
+                        grid.add(rectangle, x, y);
+                        properties.addLevel();
+                        myBank.removeAmount(properties.getHotel());
+                        money.setText("Bank: " + myBank.getAmount() + "$");
+                    } else if (properties.getLevel() == 1) {
+                        grid.add(rectangle, x, y);
+                        rectangle.setTranslateY(0);
+                        properties.addLevel();
+                        myBank.removeAmount(properties.getHotel());
+                        money.setText("Bank: " + myBank.getAmount() + "$");
+
+                    } else if (properties.getLevel() == 2) {
+                        grid.add(rectangle, x, y);
+                        rectangle.setTranslateY(28);
+                        properties.addLevel();
+                        myBank.removeAmount(properties.getHotel());
+                        money.setText("Bank: " + myBank.getAmount() + "$");
+
+                    } else {
+                        setLabel(grid, properties, myBank, money, x, y, label);
+                    }
+                }
+
+
+            } else {
+
+                price.setText("To build a hotel\nyou must buy it first!");
+
+
+            }
         }
     }
 
