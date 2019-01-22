@@ -24,7 +24,8 @@ public class SpecialField {
             money.setText("Bank: " + myBank.getAmount() + "$");
             opponentsMoney.setText("Bank: " + opponentsBank.getAmount() + "$");
 
-        } if (fieldDetection.field(pawn).getValue() == 0) {
+        }
+        else if (fieldDetection.field(pawn).getValue() == 0) {
 
             if (fieldName.equals("START")){
                 myBank.addAmount(200);
