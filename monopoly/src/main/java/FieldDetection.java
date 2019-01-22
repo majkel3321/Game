@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class FieldDetection{
 
-    HashMap<Integer,Properties> propertiesHashMap = new HashMap<>();
+    private HashMap<Integer,Properties> propertiesHashMap = new HashMap<>();
 
     public FieldDetection(){
         propertiesHashMap.put(0,new Properties("Parking",0,0,0));

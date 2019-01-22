@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.*;
 import java.util.ArrayList;
 
@@ -32,20 +31,20 @@ public class GameRunner extends Application {
     private Label opponentsLabel = new Label();
     private Label parkingLabel = new Label();
     private Text dummy = new Text();
-    Rectangle r = new Rectangle(330,360);
-    Rectangle b = new Rectangle(350,380);
-    Rectangle r2 = new Rectangle(330,360);
-    Rectangle b2 = new Rectangle(350,380);
-    GridPane grid = new GridPane();
-    FieldDetection fieldDetection = new FieldDetection();
-    Move move = new Move();
-    BuyHotel buyHotel = new BuyHotel();
-    OpponentBuy opponentBuy = new OpponentBuy();
-    Bank myBank = new Bank(1500);
-    Bank opponentsBank = new Bank(1500);
-    Bank parking = new Bank(0);
-    ArrayList<Properties> playersProperties = new ArrayList<>();
-    ArrayList<Properties> opponentProperties = new ArrayList<>();
+    private Rectangle r = new Rectangle(330,360);
+    private Rectangle b = new Rectangle(350,380);
+    private Rectangle r2 = new Rectangle(330,360);
+    private Rectangle b2 = new Rectangle(350,380);
+    private GridPane grid = new GridPane();
+    private FieldDetection fieldDetection = new FieldDetection();
+    private Move move = new Move();
+    private BuyHotel buyHotel = new BuyHotel();
+    private OpponentBuy opponentBuy = new OpponentBuy();
+    private Bank myBank = new Bank(1500);
+    private Bank opponentsBank = new Bank(1500);
+    private Bank parking = new Bank(0);
+    private ArrayList<Properties> playersProperties = new ArrayList<>();
+    private ArrayList<Properties> opponentProperties = new ArrayList<>();
 
 
 
